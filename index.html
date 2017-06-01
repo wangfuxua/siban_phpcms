@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>四板财经</title>
+	<link rel="stylesheet" type="text/css" href="http://123.57.138.213/statics/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="http://123.57.138.213/statics/css/common.css">
+	<link rel="stylesheet" type="text/css" href="http://123.57.138.213/statics/css/index.css">
+	<link href="http://123.57.138.213/statics/css/sucaijiayuan.css" rel="stylesheet" type="text/css"/>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="http://123.57.138.213/statics/css/demo.css"/>
+	<script src="http://123.57.138.213/statics/js/jquery.min.js"></script>
+	<script src="http://123.57.138.213/statics/js/jquery.easydropdown.js"></script>
+	<script src="http://123.57.138.213/statics/js/sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="http://123.57.138.213/statics/js/koala.min.1.5.js"></script>
+<script type="text/javascript">
+//图片滚动 调用方法 imgscroll({speed: 30,amount: 1,dir: "up"});
+$.fn.imgscroll = function(o){
+	var defaults = {
+		speed: 40,
+		amount: 0,
+		width: 1,
+		dir: "left"
+	};
+	o = $.extend(defaults, o);
+	
+	return this.each(function(){
+		var _li = $("li", this);
+		_li.parent().parent().css({overflow: "hidden", position: "relative"}); //div
+		_li.parent().css({margin: "0", padding: "0", overflow: "hidden", position: "relative", "list-style": "none"}); //ul
+		_li.css({position: "relative", overflow: "hidden"}); //li
+		if(o.dir == "left") _li.css({float: "left"});
+		
+		//初始大小
+		var _li_size = 0;
+		for(var i=0; i<_li.size(); i++)
+			_li_size += o.dir == "left" ? _li.eq(i).outerWidth(true) : _li.eq(i).outerHeight(true);
+		
+		//循环所需要的元素
+		if(o.dir == "left") _li.parent().css({width: (_li_size*3)+"px"});
+		_li.parent().empty().append(_li.clone()).append(_li.clone()).append(_li.clone());
+		_li = $("li", this);
+
+		//滚动
+		var _li_scroll = 0;
+		function goto(){
+			_li_scroll += o.width;
+			if(_li_scroll > _li_size)
+			{
+				_li_scroll = 0;
+				_li.parent().css(o.dir == "left" ? { left : -_li_scroll } : { top : -_li_scroll });
+				_li_scroll += o.width;
+			}
+				_li.parent().animate(o.dir == "left" ? { left : -_li_scroll } : { top : -_li_scroll }, o.amount);
+		}
+		
+		//开始
+		var move = setInterval(function(){ goto(); }, o.speed);
+		_li.parent().hover(function(){
+			clearInterval(move);
+		},function(){
+			clearInterval(move);
+			move = setInterval(function(){ goto(); }, o.speed);
+		});
+	});
+};
+</script>
+</head>
+<body>
+	<!--头部-->
+		﻿<div class="dateBox">
+		<span class="date">2015年3月10日&nbsp;星期二&nbsp;农历&nbsp;正月廿</span>
+		<span class="collection"><a href="javascript:void(0)">加入收藏</a>
+		|<a href="javascript:vid(0)" >设为首页</a></span>
+		
+	</div>
+
+	<div class="headerWrap">
+
+		<div class="header_box">
+
+			<div class="logo">
+				<a href="/"><img src="http://123.57.138.213/statics/images/logo.png" alt=""></a>
+			</div>
+
+			<div class="search">
+				<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
+					<option value="0">不限</option>
+															<option value="1">新闻动态</option>
+											<option value="54">合作企业</option>
+											<option value="53">挂牌企业</option>
+										
+				</select>
+				<script type="text/javascript">
+			
+					var typeid;
+					
+					function getTypeId(){
+					
+					var select = $('.selected').html();
+									
+					$('.old select option').each(function(x){
+					
+					if(select==$(this).html()){
+						typeid=$(this).val();
+					}
+					
+					});
+					 $('#typeid').val(typeid);
+					 
+					}
+										
+				</script>
+
+				<form action="http://123.57.138.213/index.php" name="myform" id="myform" method="get" target="_blank">
+					<input type="hidden" name="m" value="search"/>
+					<input type="hidden" name="c" value="index"/>
+					<input type="hidden" name="a" value="init"/>
+					<input type="hidden" name="typeid"  id="typeid"/>
+					<input type="hidden" name="siteid" value="1" id="siteid"/>
+					<input type="text" class="search_input" name="q" >
+					<a href="javascript:void(0);" onclick="getTypeId();myform.submit();"><img src="http://123.57.138.213/statics/images/sezrch_button.png"/></a>
+				</form>
+			</div>
+			
+			
+
+			<div class="share">
+				<a href="#"><img src="http://123.57.138.213/statics/images/weixin.png"></a>
+				<a href="http://weibo.com/u/5572009742/home"><img src="http://123.57.138.213/statics/images/weibo.png"></a>
+			</div>
+
+		</div>
+
+	</div>	<!--结束-->
+		
+	<!--交易所列表-->
+		<div class="excharge_list">
+			<ul>
+																			<li class="ml0"><a target="_blank" href="http://www.ahsgq.com/aee/index.html">安徽省股权交易所</a></li>
+																	<li ><a target="_blank" href="http://www.ahsgq.com/aee/index.html">北京股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.ahsgq.com/aee/index.html">福建海峡股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.gsgqtg.com/main/home/index.shtml">甘肃股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.gdotc.cn/">广东金融高新区股权交易中心</a></li>
+																	<li class="ml0"><a target="_blank" href="http://www.bbwotc.com/">广西北部湾股权托管交易所</a></li>
+																	<li ><a target="_blank" href="http://www.china-gee.com/frontpage/index.jsp">广州股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.hunanotc.com/">湖南股权交易所</a></li>
+																	<li ><a target="_blank" href="http://www.jlotc.com/ccprec/gqjys/index.jsp">吉林股权交易所</a></li>
+																	<li ><a target="_blank" href="http://www.jlotc.com/ccprec/gqjys/index.jsp">江苏股权交易中心</a></li>
+																	<li class="ml0"><a target="_blank" href="http://www.jlotc.com/ccprec/gqjys/index.jsp">江西省股权交易所</a></li>
+																	<li ><a target="_blank" href="http://www.clnee.com/center/index.jhtml?locale=zh_CN">辽宁股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.nmgotc.com/">内蒙古股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.nmgotc.com/">齐鲁股权托管交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.nmgotc.com/">青海股权交易中心</a></li>
+																	<li class="ml0"><a target="_blank" href="https://www.xmee.com/">厦门两岸股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.sxgq.net/GQJYPT/">山西股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.sxeec.com/">陕西股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.china-see.com/index.do">上海股权托管交易中心</a></li>
+																	<li ><a target="_blank" href="https://www.qhee.com/">深圳前海股权交易中心</a></li>
+																	<li class="ml0"><a target="_blank" href="http://www.tjsoc.com/web/default.aspx">天津股权交易所</a></li>
+																	<li ><a target="_blank" href="http://www.china-wee.com/">武汉股权托管交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.casdaq.com.cn/">新疆股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.zjex.com.cn/">浙江股权交易中心</a></li>
+																	<li ><a target="_blank" href="http://www.chn-cstc.com/">重庆股份转让中心</a></li>
+																			
+			</ul>
+		</div>
+	<!--结束-->
+
+	<!--信息/广告-->
+		<div class="hot_box">
+
+			<div class="hotspot">
+
+				<div class="hotspot_tit"> 
+						<a  target="_blank" href="#"><span>热</span> <span>点</span></a>
+				</div>
+
+				<div class="hotspot_content">
+					 
+					 
+						<p><a  target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=180">国务院关于深化体制机制改革加快实施创新驱动发展战略的若干意见</a></p>
+					 
+						<p><a  target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=61">完善私募发行立法 加快提高直接融资比例</a></p>
+					 
+						<p><a  target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=60">场外市场发展应以草根为本源</a></p>
+					 
+										
+				</div>
+
+			</div>
+
+			<div class="ad_box" style="display:block !important">
+				<ul>
+					<li class="w611"><a href="#" target="_blank"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=28"></script></a></li>
+					<li class="w199"><a href="#" target="_blank"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=29"></script></a></li>
+					<li class="mt8 ml0"><a href="#" target="_blank"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=30"></script></a></li>
+					<li class="mt8"><a href="#" target="_blank"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=31"></script></a></li>
+					<li class="mt8"><a href="#" target="_blank"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=40"></script></a></li>
+					<li class="ml6 w199"><a href="#" target="_blank"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=33"></script></a></li>
+				</ul>
+			</div>	
+
+		</div>
+	<!--结束-->
+
+	<!--政策解析-->
+		<div class="main">
+
+			<div class="main_left">
+																	<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>上海股权托管交易中心 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=9">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=190">上股交再次斩获金融创新奖连续三年蝉联该...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=189">上海市委常委、浦东新区区委书记沈晓明对...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=188">上海股权托管交易中心与重庆市中小企业发...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=164">关于2015年清明节假期休市的公告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=162">上海股权托管交易中心与重庆市中小企业发...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=161">上海股交中心与齐齐哈尔市政府达成战略合...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=158">第三届全国商业模式评选大赛（上海赛区）...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=9&id=56">关于上海金由氟材料股份有限公司在上海股...</a></li>
+																															</ul>
+						</div>
+					</div>
+									
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>深圳前海股权交易中心 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=10">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=193">深圳:紫玉木兰等27家企业挂牌公告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=191">前海股权交易中心联手中盈盛达担保公司开...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=172">深圳:禹伽茶业等33家企业挂牌公告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=169">第三届&ldquo;梧桐之星&rdquo;优秀员工总结表彰活动...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=167">前海股权交易中心乐山办事处揭牌成立</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=2">辽宁承天新能源股份有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=49">前海股权交易中心&ldquo;梧桐私募债&middot;信合18号...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=10&id=47">关于接受&ldquo;梧桐私募债&middot;信合18号&rdquo;发行备...</a></li>
+																															</ul>
+						</div>
+					</div>
+																						
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=7"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=8"></script></a></div>
+															
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>股交动态 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=11">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=192">深圳:前海股权交易中心联手中盈盛达担保公...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=187">上海:上海股权托管交易中心与重庆市中小企...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=186">上海:上海股交中心宝鸡高新产业商会孵化基...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=184">甘肃:甘肃股权交易中心&ldquo;挂牌贷&rdquo;&ldquo;股权质...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=175">安徽:中心挂牌企业获&ldquo;安徽省青年创业引导...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=170">深圳:第三届&ldquo;梧桐之星&rdquo;优秀员工总结表彰...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=168">深圳:前海股权交易中心乐山办事处揭牌成立</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=11&id=163">上海股权托管交易中心与重庆市中小企业发...</a></li>
+																															</ul>
+						</div>
+					</div>
+									
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>市场动态 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=15">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=183">政策派发“红包” 资本市场助力科技创新</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=182">“新12条”发布 温州金融改革升级</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=181">国务院：加快国有资本投资公司、运营公司试点</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=180">国务院关于深化体制机制改革加快实施创新...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=62">祁斌：关于多层次资本市场体系的十点思考</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=61">完善私募发行立法 加快提高直接融资比例</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=60">场外市场发展应以草根为本源</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=15&id=59">热冷之间把脉新三板 多层次资本市场空间大</a></li>
+																															</ul>
+						</div>
+					</div>
+																	<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=18"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=19"></script></a></div>
+															
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>挂牌企业推荐 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=16">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=166">上海:吉天师动力科技（上海）股份有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=116">山东:烟台尚美丽家建材有限公司（企业代码...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=115">北京:北京北航冠新世纪软件有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=114">甘肃:酒泉荣泰橡胶制品有限公司（企业代码...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=112">新疆:新疆粮油（集团）粮油收储有限责任公...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=111">内蒙古:莫力达瓦达翰尔族自治旗腾达建筑安装...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=110">福建:晋江市隆达新型建材有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=16&id=108">青海:西宁汇升工贸有限责任公司（股权代码...</a></li>
+																															</ul>
+						</div>
+					</div>
+									
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>信息披露 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=17">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=28&id=194">深圳:紫玉木兰等27家企业挂牌公告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=29&id=178">上海:100228 非力设计：2014年年度报告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=29&id=174">上海:关于关于江苏首升实业股份有限公司在...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=28&id=171">深圳:禹伽茶业等33家企业挂牌公告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=28&id=165">上海:关于2015年清明节假期休市的公告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=28&id=48">深圳:前海股权交易中心&ldquo;梧桐私募债&middot;信合1...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=28&id=46">深圳:关于接受&ldquo;梧桐私募债&middot;信合18号&rdquo;发...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=28&id=44">深圳:冀宁重工等20家企业挂牌公告</a></li>
+																															</ul>
+						</div>
+					</div>
+																	<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=20"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=21"></script></a></div>
+															
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>政策法规 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=18">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=30&id=157">中华人民共和国证券法</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=30&id=87">私募股权众筹融资管理办法(试行)</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=31&id=76">内蒙古:内蒙古股权交易中心登记结算业务规则(...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=30&id=70">中华人民共和国证券投资基金法</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=30&id=69">中华人民共和国中外合资经营企业法</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=30&id=68">关于规范证券公司参与区域性股权交易市场...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=30&id=67">国家税务总局关于进一步做好小微企业税收...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=31&id=25">上海:关于股份有限公司在股份转让系统挂牌...</a></li>
+																															</ul>
+						</div>
+					</div>
+									
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>挂牌要求 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=19">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=199">企业挂牌新三板之重点问题</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=198">新三板业务的挂牌流程</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=197">企业股权挂牌的好处</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=196">新三板挂牌流程中应该注意的问题</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=100">广西:广西北部湾股权托管交易所挂牌条件</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=99">浙江:浙江股权交易中心成长板企业挂牌条件</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=97">武汉:武汉股权托管交易中心《股权挂牌说明...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=19&id=91">北京:北京股权交易中心企业挂牌说明</a></li>
+																															</ul>
+						</div>
+					</div>
+																	<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=22"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=23"></script></a></div>
+															
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>股权众筹 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=20">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=88">私募股权众筹融资管理办法(试行)</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=86">股权众筹融资列入政府工作报告</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=85">股权众筹—中小微企业和创业者的突破之道</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=84">股权众筹监管平台亟待破冰</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=83">股权众筹的区域性特征</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=82">股权众筹的三大好处</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=81">天使股权与股权众筹区别？解读众筹流程</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=20&id=80">什么是股权众筹？</a></li>
+																															</ul>
+						</div>
+					</div>
+									
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>股权企业推荐 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=21">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=151">厦门:厦门中环水水处理有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=150">天津:天津诺尔电气股份有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=149">浙江:浙江百诚集团股份有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=143">安徽:安徽芜湖马仁奇峰森林旅游有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=142">山东:山东农凯米业股份有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=140">陕西:西安长兴置业投资有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=139">新疆:新疆金牛能源物联网科技股份有限公司</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=21&id=138">北京:北京北量瑞科机械工具有限责任公司</a></li>
+																															</ul>
+						</div>
+					</div>
+																	<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=24"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=25"></script></a></div>
+															
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>投融资信息 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=22">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=176">吉林:吉林省星月时尚宾馆连锁股份有限公司...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=106">青海:西藏宏祥化工有限公司硼酸的生产经营...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=105">辽宁:沈阳嘉泰航空机电有限公司入驻浑南民...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=104">吉林:长春国地探测仪器工程技术股份有限公...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=103">福建:南商▪津高债权2014001期</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=102">广西:广西梧州索芙特保健品有限公司股权转...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=101">广东:灯湖壹号-股易贷（非上市公司股权质押...</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=22&id=29">上海:上海股权托管交易中心投融资对接会</a></li>
+																															</ul>
+						</div>
+					</div>
+									
+														<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>股交推荐 </span><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=23">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+																																	<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=137">武汉股权托管交易中心</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=96">安徽省股权托管交易中心</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=95">江苏股权交易中心</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=93">青海股权交易中心</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=90">北京股权交易中心</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=77">甘肃股权交易中心</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=75">内蒙古股权交易中心中心简介</a></li>
+																																			<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=23&id=65">吉林股权交易所</a></li>
+																															</ul>
+						</div>
+					</div>
+																	<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=26"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=27"></script></a></div>
+															
+												
+				
+
+			</div>
+
+			<div class="main_right">
+			
+				<div class="four_box">
+
+					<div class="four_tit_box">
+						<span>挂牌企业</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=24">MORE</a>
+					</div>
+
+					<div class="four_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=47">安徽:合肥开元软件股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=46">安徽:安徽五星食品股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=45">深圳:深圳市高圣健康产业发展有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=44">深圳:深圳市至纯珠宝首饰有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=42">上海:上海悠游堂游乐设备股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=40">上海:吉天师动力科技（上海）股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=38">辽宁:辽宁壮苗生化科技股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=36">辽宁:沈阳市振东建设工程监理股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=35">辽宁:沈阳澳华制药股份有限公司</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="four_box">
+
+					<div class="four_tit_box">
+						<span>机构推荐</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=25">MORE</a>
+					</div>
+
+					<div class="four_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=127">安徽:安徽丰华长嘉投资管理有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=126">新疆:国泰君安证券股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=125">内蒙古:呼伦贝尔中信融源投资管理有限责任公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=124">广东:佛山市东方汇银资本管理有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=121">重庆:四川五岳联合资产评估有限责任公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=119">湖南:湖南里程资产评估有限责任公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=118">湖北:北京和合润鑫投资管理有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=117">安徽:清大益讯（北京）投资管理有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=25&id=109">浙江:杭州歌本投资管理有限公司</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>培训信息</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=26">MORE</a>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=148">上海国家会计学院高级财会人员专业会计硕士EMP...</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=147">上海股权托管交易中心市场监管部开展第五期&ldquo;...</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=146">关于举办“交易所运作与管理”高级研修班的通知</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=145">互联网金融高级研修班</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=136">融资策略与实务培训：把握融资特性 优化融资策略</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=123">北京大学实战型资本战略与投融资决策董事长班</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=26&id=122">中小企业融资上市培训班在牡丹江市举办</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>研究报告</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=27">MORE</a>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=134">区域股权市场对证券公司业务的影响</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=132">中国场外股权交易市场体系及前景分析</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=129">台湾证券场外市场的现状、特点与启示</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=128">宋丽萍：现在发展场外市场是为资本市场建设&ldquo;...</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=120">托管公司融资业务现状及创新分析</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=113">现代企业登记制度改革的意义</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=27&id=78">混合型交易制度研究：做市商制度在中国资本市...</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=34"></script></a></div>
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=35"></script></a></div>
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=36"></script></a></div>
+				
+				<div class="trad_box">
+					<div class="trad_tit_box">
+						<span>上海股权托管交易中心挂牌企业</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=32">MORE</a>
+					</div>
+
+					<div class="trad_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=43">上海:上海悠游堂游乐设备股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=41">上海:吉天师动力科技（上海）股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=30">上海:上海铂尔怡环境技术股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=28">上海:上海钢软信息技术工程股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=26">上海:保罗生物园科技股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=24">上海:上海福升威尔智能控制技术股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=32&id=20">上海:上海兴诺康纶纤维科技股份有限公司</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="trad_box">
+
+					<div class="trad_tit_box">
+						<span>辽宁股权交易中心挂牌企业</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=33">MORE</a>
+					</div>
+
+					<div class="trad_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=33&id=39">辽宁:辽宁壮苗生化科技股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=33&id=37">辽宁:沈阳市振东建设工程监理股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=33&id=34">辽宁:沈阳鑫博工业技术股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=33&id=32">辽宁:辽宁九洲龙跃医用科技股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=33&id=17">辽宁:锦州天鹅焊材股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=33&id=14">辽宁:辽宁奉天投资控股股份有限公司</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=24&id=2">辽宁:辽宁承天新能源股份有限公司</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="trad_box">
+
+					<div class="trad_tit_box">
+						<span>园区推荐</span>
+						<a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=34">MORE</a>
+					</div>
+
+					<div class="trad_content_box">
+						<ul>
+																														<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=185">安徽巢湖和县台湾农民创业园</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=156">长春科技创业服务中心</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=155">天津高新区海外留学生创业园</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=154">紫荆花孵化园</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=153">常州市国家创新型科技园区</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=152">中关村国家自主创新示范区</a></li>
+																															<li><a target="_blank" href="http://123.57.138.213/index.php?m=content&c=index&a=show&catid=34&id=144">上海莘闵高新技术暨回国留学生科技创业园区</a></li>
+																											</ul>
+					</div>
+
+				</div>
+
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=41"></script></a></div>
+
+			</div>
+
+		</div>
+
+	<!--结束-->
+
+	<!--广告-->
+		<div class="ad6"><a href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=37"></script></a></div>
+	<!--结束-->
+	<!--合作专区-->
+		<div class="partner_box">
+
+			<div class="partner_tit">
+				合<br/>作<br/>专<br/>区
+			</div>
+
+			<div class="scrollleft">
+					<ul>
+																					<li>
+									<a target="_blank" href="http://www.zbotc.com/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326110949910.jpg"></span>
+										<p>齐鲁股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.jseec.com.cn/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326111924142.jpg"></span>
+										<p>江苏股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.clnee.com/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326112106466.jpg"></span>
+										<p>辽宁股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.qheec.com/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326112212706.jpg"></span>
+										<p>青海股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.hxee.com.cn/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326112337724.jpg"></span>
+										<p>福建海峡股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.china-gee.com/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326112540337.jpg"></span>
+										<p>广州股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.casdaq.com.cn/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326112718443.jpg"></span>
+										<p>新疆股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.gsotc.com.cn/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326112837673.jpg"></span>
+										<p>甘肃股权交易中心</p>
+									</a>
+								</li>
+															<li>
+									<a target="_blank" href="http://www.bjotc.cn/">
+										<span><img src="http://123.57.138.213/uploadfile/2015/0326/20150326113118970.jpg"></span>
+										<p>北京股权交易中心</p>
+									</a>
+								</li>
+																			
+					</ul>
+				
+			</div>
+
+		</div>
+	<!--结束-->
+
+
+	<!--底部-->
+	﻿<div class="footer_wrap">
+
+				<div class="footer_box">
+			<ul>
+														<li><a href="http://123.57.138.213/html/about/aboutus/"><span>关于我们</span></a></li>
+																								<li><a href="http://123.57.138.213/html/about/contactus/"><span>联系方式</span></a></li>
+																								<li><a href="http://123.57.138.213/index.php?m=content&c=index&a=lists&catid=4"><span>免责声明</span></a></li>
+																								<li><a class="bgn" href="http://123.57.138.213/html/about/ad/">广告服务</a></li>
+																	</ul>
+			<p>京IC备5474735&nbsp;技术支持：普世联创</p>
+			<p>版权所有：四板财经 &nbsp;&nbsp;联系电话：69943608&nbsp;&nbsp; 传真：69943607&nbsp; &nbsp;  邮箱：zuwenjin@126.com &nbsp;  &nbsp; 地址：北京市海淀区中关村西区丹棱街甲1号互联网金融中心16层   </p>
+		</div>
+		</div>
+	<!--结束-->
+
+	<div class="float_adl">
+		<a href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=38"></script></a>
+		<a href="javascript:void(0);" id="closeButtonleft"><img src="http://123.57.138.213/statics/images/close_buton.png" alt=""></a>
+	</div>
+
+	<div class="float_adr">
+		<a href="#"><script language="javascript" src="http://123.57.138.213/index.php?m=poster&c=index&a=show_poster&id=39"></script></a>
+		<a href="javascript:void(0);" id="closeButtonright"><img src="http://123.57.138.213/statics/images/close_buton.png" alt=""></a>
+	</div>
+
+	<a href="#0" class="cd-top">Top</a>
+
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		$(".float_adl #closeButtonleft").click(function(){
+			$(".float_adl").hide();
+		});
+
+		$(".float_adr #closeButtonright").click(function(){
+			$(".float_adr").hide();
+		});
+		
+		
+	});
+	</script>
+	
+	
+	<script type="text/javascript" src="http://123.57.138.213/statics/js/ueditor/ueditor.parse.js"></script>
+	<script type="text/javascript">
+	setTimeout(function(){ uParse('#content', {
+	 'highlightJsUrl':'http://123.57.138.213/statics/js/ueditor/third-party/SyntaxHighlighter/shCore.js',
+	 'highlightCssUrl':'http://123.57.138.213/statics/js/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'})
+	}, 300);
+	</script>	<!--结束-->
+
+	<script type="text/javascript">
+		$(".hotspot_content:not(:first)").hide();
+        var news_li=$(".hotspot_tit ul li");
+
+        news_li.hover(function(){
+        	 $(this).addClass("current")
+                  .siblings().removeClass("current");
+            var news_index= news_li.index(this);
+            $(".hotspot_content").eq(news_index).show()
+                            .siblings().hide();
+             $(".hotspot_tit").show();     
+
+		});
+	</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".scrollleft").imgscroll({
+		speed: 40,    //图片滚动速度
+		amount: 0,    //图片滚动过渡时间
+		width: 1,     //图片滚动步数
+		dir: "left"   // "left" 或 "up" 向左或向上滚动
+	});
+	
+	
+});
+</script> 
+
+
+
+</body>
+</html>

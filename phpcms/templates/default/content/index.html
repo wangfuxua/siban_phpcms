@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>四板财经</title>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}reset.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}common.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}index.css">
+	<link href="{CSS_PATH}sucaijiayuan.css" rel="stylesheet" type="text/css"/>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}demo.css"/>
+	<script src="{JS_PATH}jquery.min.js"></script>
+	<script src="{JS_PATH}jquery.easydropdown.js"></script>
+	<script src="{JS_PATH}sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="{JS_PATH}koala.min.1.5.js"></script>
+<script type="text/javascript">
+//图片滚动 调用方法 imgscroll({speed: 30,amount: 1,dir: "up"});
+$.fn.imgscroll = function(o){
+	var defaults = {
+		speed: 40,
+		amount: 0,
+		width: 1,
+		dir: "left"
+	};
+	o = $.extend(defaults, o);
+	
+	return this.each(function(){
+		var _li = $("li", this);
+		_li.parent().parent().css({overflow: "hidden", position: "relative"}); //div
+		_li.parent().css({margin: "0", padding: "0", overflow: "hidden", position: "relative", "list-style": "none"}); //ul
+		_li.css({position: "relative", overflow: "hidden"}); //li
+		if(o.dir == "left") _li.css({float: "left"});
+		
+		//初始大小
+		var _li_size = 0;
+		for(var i=0; i<_li.size(); i++)
+			_li_size += o.dir == "left" ? _li.eq(i).outerWidth(true) : _li.eq(i).outerHeight(true);
+		
+		//循环所需要的元素
+		if(o.dir == "left") _li.parent().css({width: (_li_size*3)+"px"});
+		_li.parent().empty().append(_li.clone()).append(_li.clone()).append(_li.clone());
+		_li = $("li", this);
+
+		//滚动
+		var _li_scroll = 0;
+		function goto(){
+			_li_scroll += o.width;
+			if(_li_scroll > _li_size)
+			{
+				_li_scroll = 0;
+				_li.parent().css(o.dir == "left" ? { left : -_li_scroll } : { top : -_li_scroll });
+				_li_scroll += o.width;
+			}
+				_li.parent().animate(o.dir == "left" ? { left : -_li_scroll } : { top : -_li_scroll }, o.amount);
+		}
+		
+		//开始
+		var move = setInterval(function(){ goto(); }, o.speed);
+		_li.parent().hover(function(){
+			clearInterval(move);
+		},function(){
+			clearInterval(move);
+			move = setInterval(function(){ goto(); }, o.speed);
+		});
+	});
+};
+</script>
+</head>
+<body>
+	<!--头部-->
+		{template 'content','header'}
+	<!--结束-->
+		
+	<!--交易所列表-->
+		<div class="excharge_list">
+			<ul>
+				{pc:content action="lists" catid="37" order="id" num="1000"}
+				{php $i=0;}
+					{loop $data $r}
+						<li {if $i%5==0}class="ml0"{/if}><a target="_blank" href="{$r['website']}">{$r['title']}</a></li>
+						{$i++}
+					{/loop}
+				{/pc}
+				
+			</ul>
+		</div>
+	<!--结束-->
+
+	<!--信息/广告-->
+		<div class="hot_box">
+
+			<div class="hotspot">
+
+				<div class="hotspot_tit"> 
+						<a  target="_blank" href="#"><span>热</span> <span>点</span></a>
+				</div>
+
+				<div class="hotspot_content">
+					{pc:content action="hits" siteid="1" catid="15" num="3" order="views DESC" cache="3600"} 
+					{loop $data $r} 
+						<p><a  target="_blank" href="{$r['url']}">{$r['title']}</a></p>
+					{/loop} 
+					{/pc}
+					
+				</div>
+
+			</div>
+
+			<div class="ad_box" style="display:block !important">
+				<ul>
+					<li class="w611"><a href="#" target="_blank"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=28"></script></a></li>
+					<li class="w199"><a href="#" target="_blank"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=29"></script></a></li>
+					<li class="mt8 ml0"><a href="#" target="_blank"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=30"></script></a></li>
+					<li class="mt8"><a href="#" target="_blank"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=31"></script></a></li>
+					<li class="mt8"><a href="#" target="_blank"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=40"></script></a></li>
+					<li class="ml6 w199"><a href="#" target="_blank"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=33"></script></a></li>
+				</ul>
+			</div>	
+
+		</div>
+	<!--结束-->
+
+	<!--政策解析-->
+		<div class="main">
+
+			<div class="main_left">
+			{pc:content action="category" catid="0" order="id ASC Limit 4,12" num="12"}
+					{php $i=1;}
+				{loop $data $k $v}
+					<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>{$v['catname']} </span><a target="_blank" href="{$v['url']}">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+							{pc:content action="lists" catid="$k" order="id desc" num="8"}
+								{loop $data $r}
+									{if $r['area']}
+									<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],58,'...')}</a></li>
+									{else}
+									<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],64,'...')}</a></li>
+									{/if}
+								{/loop}
+							{/pc}
+							</ul>
+						</div>
+					</div>
+					{if $i%2==0}
+						{if $i+5==7 }
+											
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=<?php echo $i+5;?>"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=<?php echo $i+6;?>"></script></a></div>
+						{else}
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=<?php echo $i+14;?>"></script></a></div>
+
+						<div class="ad4"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=<?php echo $i+15;?>"></script></a></div>
+						{/if}
+					{/if}
+				
+					{$i++}
+				{/loop}
+			{/pc}
+
+				
+
+			</div>
+
+			<div class="main_right">
+			
+				<div class="four_box">
+
+					<div class="four_tit_box">
+						<span>{$CATEGORYS[24][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[24]['url']}">MORE</a>
+					</div>
+
+					<div class="four_content_box">
+						<ul>
+							{pc:content action="lists" catid="24" order="id desc" num="9" }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="four_box">
+
+					<div class="four_tit_box">
+						<span>{$CATEGORYS[25][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[25]['url']}">MORE</a>
+					</div>
+
+					<div class="four_content_box">
+						<ul>
+							{pc:content action="lists" catid="25" order="id desc" num="9"  }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>{$CATEGORYS[26][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[26]['url']}">MORE</a>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+							{pc:content action="lists" catid="26" order="id desc" num="7"  }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>{$CATEGORYS[27][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[27]['url']}">MORE</a>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+							{pc:content action="lists" catid="27" order="id desc" num="7"  }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=34"></script></a></div>
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=35"></script></a></div>
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=36"></script></a></div>
+				
+				<div class="trad_box">
+					<div class="trad_tit_box">
+						<span>{$CATEGORYS[32][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[32]['url']}">MORE</a>
+					</div>
+
+					<div class="trad_content_box">
+						<ul>
+							{pc:content action="lists" catid="32" order="id desc" num="7"  }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="trad_box">
+
+					<div class="trad_tit_box">
+						<span>{$CATEGORYS[33][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[33]['url']}">MORE</a>
+					</div>
+
+					<div class="trad_content_box">
+						<ul>
+							{pc:content action="lists" catid="33" order="id desc" num="7"  }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="trad_box">
+
+					<div class="trad_tit_box">
+						<span>{$CATEGORYS[34][catname]}</span>
+						<a target="_blank" href="{$CATEGORYS[34]['url']}">MORE</a>
+					</div>
+
+					<div class="trad_content_box">
+						<ul>
+							{pc:content action="lists" catid="34" order="id desc" num="7"  }
+							{loop $data $r}
+								{if $r['area']}
+								<li><a target="_blank" href="{$r['url']}">{$r['area']}:{str_cut($r['title'],64,'...')}</a></li>
+								{else}
+								<li><a target="_blank" href="{$r['url']}">{str_cut($r['title'],70,'...')}</a></li>
+								{/if}
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="ad5"><a target="_blank" href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=41"></script></a></div>
+
+			</div>
+
+		</div>
+
+	<!--结束-->
+
+	<!--广告-->
+		<div class="ad6"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=37"></script></a></div>
+	<!--结束-->
+	<!--合作专区-->
+		<div class="partner_box">
+
+			<div class="partner_tit">
+				合<br/>作<br/>专<br/>区
+			</div>
+
+			<div class="scrollleft">
+					<ul>
+						{pc:content action="lists" catid="35" order="id" num="16"  }
+							{loop $data $r}
+								<li>
+									<a target="_blank" href="{$r['website']}">
+										<span><img src="{$r['logo']}"></span>
+										<p>{$r['title']}</p>
+									</a>
+								</li>
+							{/loop}
+						{/pc}
+						
+					</ul>
+				
+			</div>
+
+		</div>
+	<!--结束-->
+
+
+	<!--底部-->
+	{template 'content','footer'}
+	<!--结束-->
+
+	<script type="text/javascript">
+		$(".hotspot_content:not(:first)").hide();
+        var news_li=$(".hotspot_tit ul li");
+
+        news_li.hover(function(){
+        	 $(this).addClass("current")
+                  .siblings().removeClass("current");
+            var news_index= news_li.index(this);
+            $(".hotspot_content").eq(news_index).show()
+                            .siblings().hide();
+             $(".hotspot_tit").show();     
+
+		});
+	</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".scrollleft").imgscroll({
+		speed: 40,    //图片滚动速度
+		amount: 0,    //图片滚动过渡时间
+		width: 1,     //图片滚动步数
+		dir: "left"   // "left" 或 "up" 向左或向上滚动
+	});
+	
+	
+});
+</script> 
+
+
+
+</body>
+</html>

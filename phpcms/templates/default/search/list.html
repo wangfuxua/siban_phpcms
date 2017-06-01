@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>搜索结果</title>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}reset.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}common.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}list.css">
+	<link href="{CSS_PATH}sucaijiayuan.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}demo.css"/>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}search_list.css" />
+	<script src="{JS_PATH}jquery.min.js"></script>
+	<script src="{JS_PATH}jquery.easydropdown.js"></script>
+	<script src="{JS_PATH}sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="{JS_PATH}koala.min.1.5.js"></script>
+</head>
+<body>
+	{template 'content','header'}
+	<!--结束-->
+
+	<!--主体-->
+	 
+
+	<div class="position_box">
+		当前位置: <a href="{siteurl($siteid)}">首页</a><span> &gt; </span>搜索结果
+	</div>
+
+	<div class="main2">
+
+		<div class="main2_left">
+
+			<div class="search_menu">
+				<h2>关于 "{$_GET['q']}",共找到约{$totalnums}个内容。用时{sprintf("%01.2f", $execute_time)} 秒）</h2>
+				<p>类别：
+					<a  href="index.php?m=search&c=index&a=init&typeid=0&q={urlencode($search_q)}&siteid={$siteid}&time={$time}" {if $_GET['typeid']==0} class="current"{/if}>不限</a>
+				{loop $search_model $k=>$v}
+					<a href="index.php?m=search&c=index&a=init&typeid={$v['typeid']}&q={urlencode($search_q)}&siteid={$siteid}&time={$time}" {if $v['typeid']==$typeid} class="current"{/if}>{$v['name']}</a>
+				{/loop}					
+				</p>
+				<p>时间：
+					 <a href="index.php?m=search&c=index&a=init&typeid={$typeid}&q={urlencode($search_q)}&siteid={$siteid}&time=all" {if $time=='all' || empty($time)}class="current"{/if}>全部时间</a> 
+					 <a href="index.php?m=search&c=index&a=init&typeid={$typeid}&q={urlencode($search_q)}&siteid={$siteid}&time=day" {if $time=='day'}class="current"{/if}>一天内</a> 
+					 <a href="index.php?m=search&c=index&a=init&typeid={$typeid}&q={urlencode($search_q)}&siteid={$siteid}&time=week" {if $time=='week'}class="current"{/if}>一周内</a> 
+					 <a href="index.php?m=search&c=index&a=init&typeid={$typeid}&q={urlencode($search_q)}&siteid={$siteid}&time=month" {if $time=='month'}class="current"{/if}>一月内</a> 
+					 <a href="index.php?m=search&c=index&a=init&typeid={$typeid}&q={urlencode($search_q)}&siteid={$siteid}&time=year" {if $time=='year'}class="current"{/if}>一年内</a> 
+				</p>
+				<p>最近搜索：
+					
+				</p>
+			</div>
+
+			<div class="list_box">
+				<ul>
+					{loop $data $i $r}
+						<li>
+							<a href="{$r['url']}">{$r['title']}</a>
+						</li>
+					{/loop}
+					{if empty($data)}未找到结果{/if}
+				</ul>
+				
+				{if $setting['relationenble']}
+					<div class="wrap sgch"><strong>相关搜索：</strong>
+					{loop $relation $k $v}
+					<a href="?m=search&c=index&a=init&typeid={$typeid}&siteid={$siteid}&q={$v['keyword']}">{$v['keyword']}</a> 
+					{/loop}
+					</div>
+				{/if}
+			</div>
+			<div class="submenu">
+				<ul>
+					{$pages}
+				</ul>
+			</div>
+			
+		</div>
+
+		<div class="main_right">
+			<ul>
+				<li class="mt0"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=42"></script></a></li>
+				<li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=43"></script></a></li>
+				<li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=46"></script></li>
+				<!-- <li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=47"></script></a></li> -->
+			</ul>
+		</div>
+
+	</div>
+	<!--结束-->
+
+
+	<div class="ad7">
+		 <script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=45"></script>
+	</div>
+		
+
+	<!--底部-->
+	{template 'content','footer'}
+	<script type="text/javascript" src="{JS_PATH}search_history.js"></script>
+	{if $setting['suggestenable']}
+	<script type="text/javascript" src="{JS_PATH}jquery.suggest.js"></script>
+	<script type="text/javascript" src="{JS_PATH}search_suggest.js"></script>
+	{/if}
+
+	<script type="text/javascript">
+	Qfast.add('widgets', { path: "{JS_PATH}terminator2.2.min.js", type: "js", requires: ['fx'] });  
+	Qfast(false, 'widgets', function () {
+		K.tabs({
+			id: 'fsD1',   //½¹µãÍ¼°ü¹üid  
+			conId: "D1pic1",  //** ´óÍ¼Óò°ü¹üid  
+			tabId:"D1fBt",  
+			tabTn:"a",
+			conCn: '.fcon', //** ´óÍ¼ÓòÅäÖÃclass       
+			auto: 1,   //×Ô¶¯²¥·Å 1»ò0
+			effect: 'fade',   //Ð§¹ûÅäÖÃ
+			eType: 'click', //** Êó±êÊÂ¼þ
+			pageBt:true,//ÊÇ·ñÓÐ°´Å¥ÇÐ»»Ò³Âë
+			bns: ['.prev', '.next'],//** Ç°ºó°´Å¥ÅäÖÃclass                          
+			interval: 3000  //** Í£¶ÙÊ±¼ä  
+		}) 
+	})  
+	</script>
+</body>
+</html>

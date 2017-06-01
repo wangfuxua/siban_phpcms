@@ -1,0 +1,156 @@
+.dateBox{
+	width: 1000px;
+	height: 30px;
+	margin: 0 auto;
+	line-height: 30px;
+}
+
+
+.dateBox span.date{
+	display: block;
+	float: left;
+	color: #666;
+}
+
+.dateBox span.collection{
+	display: block;
+	float: right;
+	color: #666;
+}
+
+.dateBox span.collection a{
+	color: #666;
+	padding:0 3px;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+.headerWrap{
+	width: auto;
+	height: 100px;
+	background-color: #cb000e;
+}
+
+.header_box{ 
+	width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.logo{ 
+	width: 155px;
+	height: 56px;
+	float: left;
+	margin-top: 25px;
+}
+
+.search{ 
+	width: 500px;
+	height: 34px;
+	float: left;
+	margin:33px 0 0 95px;
+	background-color: #fff;
+}
+
+
+.search_input{ 
+	display: block;
+	float: left;
+	width: 322px;
+	height: 24px;
+	padding: 3px 10px;
+	outline: none;
+	border: none;
+}
+
+.search a{ 
+	display: block;
+	float: left;
+	width: 64px;
+	height: 30px;
+	padding: 2px;
+}
+
+.search a:active{ 
+	opacity: 0.6;
+}
+
+.share{ 
+	width: 90px;
+	height: 34px;
+	float: right;
+	margin-top: 33px;
+}
+
+.share a{ 
+	display:inline-table;
+	width: 34px;
+	height: 34px;
+	float: left;
+	border-radius:100px;
+    -webkit-border-radius:100px;
+    -moz-border-radius:100px;
+    background-color: #fff;
+    margin-left: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 34px;
+    font-size: 25px;
+}
+.share a:active{
+	opacity: 0.9;
+}
+
+
+.footer_wrap{ 
+	clear: both;
+	width: auto;
+	height: 120px;
+	margin-top:20px;
+	background-color: #cb000e;
+}
+
+.footer_box{ 
+	width: 1000px;
+	height: 120px;
+	margin:0 auto;
+}
+
+
+.footer_box ul{ 
+	display: block;
+	clear: both;
+	width: 360px;
+	height: 30px;
+	margin:  0 auto;
+	padding: 15px 0 10px 0;
+}
+
+.footer_box li a{ 
+	display: block;
+	width: 90px;
+	height: 30px;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	font-family: "Microsoft Yahei";
+	font-size: 14px;
+	background:url(../images/footer_list.png) no-repeat right center; 
+}
+
+.footer_box li a.bgn{ 
+	background: #cb000e;
+}
+
+.footer_box p{ 
+	display: block;
+	height: 24px;
+	font-family: "Microsoft Yahei";
+	font-size: 12px;
+	line-height: 24px;
+	text-align: center;
+	color: #eee;
+}

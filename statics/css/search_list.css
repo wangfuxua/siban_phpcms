@@ -1,0 +1,153 @@
+
+
+.position_box{ 
+	width: 1000px;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+.search_menu{
+	width: 700px;
+	height: 130px;
+	margin: 0  20px;
+	border-bottom: 1px dashed #ccc;
+}
+
+.search_menu h2{
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	-ms-text-align-last: auto;
+	text-align:left;
+	font-size: 14px;
+	color: #555;
+	padding: 10px 0 10px 0;
+}
+
+.search_menu p{
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	font-family: "Microsoft Yahei";
+	color: #555;
+}
+
+.search_menu p a{
+	color: #444;
+	font-weight: normal;
+	padding: 0 5px;
+}
+
+.search_menu p a:hover{
+	 color: #ee1322;
+}
+
+.search_menu p a.current{
+	 color: #cb000e;
+	 font-weight: bold;
+}
+
+
+
+.main2{ 
+	clear: both;
+	width: 1000px;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.main2_left{ 
+	width: 740px;
+	height: auto;
+	float: left;
+	border: 1px solid #ccc;
+	padding-bottom: 20px;
+}
+
+.list_box{ 
+	width: 700px;
+	height: auto;
+	padding: 10px 20px 0 20px;
+}
+
+.list_box ul{ 
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+.list_box li{ 
+	display: block;
+	width: 700px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.list_box li a{ 
+	display: block;
+	width: 500px;
+	float: left;
+	color: #444;
+}
+
+.main_right{ 
+	width: 242px;
+	height: auto;
+	float: right;
+}
+
+.main_right ul{ 
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+.main_right li{ 
+	width: 240px;
+	height: 270px;
+	margin-top: 20px;
+	border: 1px solid #ccc;
+}
+
+.main_right li.mt0{ 
+	margin-top: 0px;
+}
+
+
+.float_adl{ 
+	width: 150px;
+	height: 279px;
+	border: 1px solid #ccc;
+	position: fixed;
+	top:150px;
+	left:0px;
+}
+
+#closeButtonleft{
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	margin-left: 130px;
+	margin-top: -282px;
+}
+
+
+.float_adr{ 
+	width: 150px;
+	height: 279px;
+	border: 1px solid #ccc;
+	position: fixed;
+	top:150px;
+	right:0px;
+}
+
+#closeButtonright{
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	margin-top: -282px;
+}

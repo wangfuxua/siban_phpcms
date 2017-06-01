@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$CAT[catname]}</title>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}reset.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}common.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}list.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}content.css">
+	<link href="{CSS_PATH}sucaijiayuan.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}demo.css"/>
+	<script src="{JS_PATH}jquery.min.js"></script>
+	<script src="{JS_PATH}jquery.easydropdown.js"></script>
+	<script src="{JS_PATH}sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="{JS_PATH}koala.min.1.5.js"></script>
+</head>
+<body>
+	<!--头部-->
+	{template 'content','header'}
+	<!--结束-->
+
+	<!--主体-->
+	<div class="ad7">
+	<!--<script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=44"></script>-->
+		  <div id="fsD1" class="focus1">  
+			    <div id="D1pic1" class="fPic"> 
+				{pc:content action="lists" catid="36"}
+					{loop $data $r}
+						
+						<div class="fcon" style="display: none;">
+							<a target="_blank" href="{$r['link']}"><img src="{$r['image']}" style="opacity: 1; "></a>
+						</div>
+						 
+					{/loop}
+				{/pc}				
+			    </div>
+			    <div class="fbg">  
+			    <div class="D1fBt" id="D1fBt">  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>1</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>2</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"><i>3</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>4</i></a>  
+			    </div>  
+			    </div>  
+			</div>   
+	</div>
+
+	<div class="position_box">
+		当前位置:<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)}
+	</div>
+
+	<div class="main2">
+		<div class="main2_left">
+			<h3>{$title}</h3>
+			<div class="content_box">
+				{$content}
+			</div>
+		</div>
+
+		<div class="main_right">
+			<ul>
+				<li class="mt0"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=42"></script></a></li>
+				<li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=43"></script></a></li>
+				<li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=46"></script></li>
+				
+			</ul>
+		</div>
+
+	</div>
+	<!--结束-->
+
+
+	<div class="ad7">
+		 <script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=45"></script>
+	</div>
+		
+
+	{template 'content','footer'}
+
+
+	<script type="text/javascript">
+		$(".hotspot_content:not(:first)").hide();
+        var news_li=$(".hotspot_tit ul li");
+
+        news_li.hover(function(){
+        	 $(this).addClass("current")
+                  .siblings().removeClass("current");
+            var news_index= news_li.index(this);
+            $(".hotspot_content").eq(news_index).show()
+                            .siblings().hide();
+             $(".hotspot_tit").show();     
+
+			 });
+	</script>
+
+		<script type="text/javascript">
+	Qfast.add('widgets', { path: "{JS_PATH}terminator2.2.min.js", type: "js", requires: ['fx'] });  
+	Qfast(false, 'widgets', function () {
+		K.tabs({
+			id: 'fsD1',   //½¹µãÍ¼°ü¹üid  
+			conId: "D1pic1",  //** ´óÍ¼Óò°ü¹üid  
+			tabId:"D1fBt",  
+			tabTn:"a",
+			conCn: '.fcon', //** ´óÍ¼ÓòÅäÖÃclass       
+			auto: 1,   //×Ô¶¯²¥·Å 1»ò0
+			effect: 'fade',   //Ð§¹ûÅäÖÃ
+			eType: 'click', //** Êó±êÊÂ¼þ
+			pageBt:true,//ÊÇ·ñÓÐ°´Å¥ÇÐ»»Ò³Âë
+			bns: ['.prev', '.next'],//** Ç°ºó°´Å¥ÅäÖÃclass                          
+			interval: 3000  //** Í£¶ÙÊ±¼ä  
+		}) 
+	})  
+</script>
+</body>
+</html>

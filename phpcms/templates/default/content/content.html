@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$CAT[catname]}</title>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}reset.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}common.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}list.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}content.css">
+	<link href="{CSS_PATH}sucaijiayuan.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}demo.css"/>
+	<script src="{JS_PATH}jquery.min.js"></script>
+	<script src="{JS_PATH}jquery.easydropdown.js"></script>
+	<script src="{JS_PATH}sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="{JS_PATH}koala.min.1.5.js"></script>
+</head>
+<body>
+	<!--头部-->
+	<div class="dateBox">
+		<span class="date">2015年3月10日&nbsp;星期二&nbsp;农历&nbsp;正月廿</span>
+		<span class="collection"><a href="#">加入收藏</a>|<a href="#">设为首页</a></span>
+	</div>
+
+	<div class="headerWrap">
+
+		<div class="header_box">
+
+			<div class="logo">
+				<a href="/"><img src="{IMG_PATH}logo.png" alt=""></a>
+			</div>
+
+			<div class="search">
+					<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
+						<option value="1">公司</option>
+						<option value="2">新闻</option>
+						<option value="3">Opti</option>
+						<option value="4">Opti</option>
+						<option value="5">Opti</option>
+					</select>
+				<input type="text" id="search_input">
+				<a href="javascript:void(0);"><img src="{IMG_PATH}sezrch_button.png"></a>
+			</div>
+
+			<div class="share">
+				<a href="#"><img src="{IMG_PATH}weixin.png"></a>
+				<a href="#"><img src="{IMG_PATH}weibo.png"></a>
+			</div>
+
+		</div>
+
+	</div>
+	<!--结束-->
+
+	<!--主体-->
+	<div class="ad7">
+					<div id="fsD1" class="focus1">  
+			    <div id="D1pic1" class="fPic">  
+			        <div class="fcon" style="display: none;">
+			            <a target="_blank" href="#"><img src="{IMG_PATH}ad7.png" style="opacity: 1; "></a>
+			        </div>
+			        
+			        <div class="fcon" style="display: none;">
+			            <a target="_blank" href="#"><img src="{IMG_PATH}ad7.png" style="opacity: 1; "></a>
+			        </div>
+			        
+			        <div class="fcon" style="display: none;">
+			            <a target="_blank" href="#"><img src="{IMG_PATH}ad7.png" style="opacity: 1; "></a>
+			        </div>
+			        
+			        <div class="fcon" style="display: none;">
+			            <a target="_blank" href="#"><img src="{IMG_PATH}ad7.png" style="opacity: 1; "></a>
+			        </div>    
+			    </div>
+			    <div class="fbg">  
+			    <div class="D1fBt" id="D1fBt">  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>1</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>2</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"><i>3</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>4</i></a>  
+			    </div>  
+			    </div>  
+			</div>  
+	</div>
+
+	<div class="position_box">
+		当前位置:<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)}
+	</div>
+
+	<div class="main2">
+
+		<div class="main2_left">
+
+			<div class="list_box">
+
+				<h3>{$title}</h3>
+				<span>来月：{$copyfrom}&nbsp;&nbsp;作者：四板财经&nbsp;&nbsp;  时间：{date('Y-m-d',$r['inputtime'])}</span>
+				{$content}
+			</div>
+
+			<div class="submenu">
+				<ul>
+					<li class="w70"><a class="" href="#">上一页</a></li>
+					<li class="current"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li class="w70"><a href="#">下一页</a></li>
+					<li class="w50">共4页</li>
+					<li class="w60">到<input type="text" id="pageinput">页</li>
+					<li><a href="javascript:void(0)">GO</a></li>
+				</ul>
+			</div>
+
+			<div class="relative_box">
+			
+				<p><a href="{$previous_page[url]}">上一篇：{$previous_page[title]}</a></p>
+				<p><a href="{$next_page[url]}">下一篇：{$next_page[title]}</a></p>
+				<p>关键词：<a href="content.html">中金鼎晟</a>  <a href="content.html">电子商务</a></p>
+			</div>
+
+		</div>
+
+		<div class="main_right">
+			<ul>
+				<li class="mt0"><a href="#"><img src="{IMG_PATH}ad8.png"></a></li>
+				<li><a href="#"><img src="{IMG_PATH}ad8.png"></a></li>
+				<li><a href="#"><img src="{IMG_PATH}ad8.png"></a></li>
+				<li><a href="#"><img src="{IMG_PATH}ad8.png"></a></li>
+			</ul>
+		</div>
+
+	</div>
+	<!--结束-->
+
+
+	<div class="ad7">
+		<img src="{IMG_PATH}ad7.png">
+	</div>
+		
+
+	<!--底部-->
+	<div class="footer_wrap">
+
+		<div class="footer_box">
+			<ul>
+				<li><a href="#">关于我们</a></li>
+				<li><a href="#">广告服务</a></li>
+				<li><a href="#">联系我们</a></li>
+				<li><a class="bgn" href="#">免责声明</a></li>
+			</ul>
+			<p>京IC备5474735   技术支持：普世联创</p>
+			<p>版权所有：四板财经 &nbsp;&nbsp;联系电话：159324244&nbsp;&nbsp;    QQ：34242344&nbsp; &nbsp;   邮箱：34242344@qq.com &nbsp;  &nbsp; 地址：北京海淀区中关村3424   </p>
+		</div>
+
+	</div>
+	<!--结束-->
+
+	<div class="float_adl">
+		<a href="#"><img src="{IMG_PATH}floatl.png"></a>
+	</div>
+	<div class="float_adr">
+		<a href="#"><img src="{IMG_PATH}floatl.png"></a>
+	</div>
+
+	<a href="#0" class="cd-top">Top</a>
+
+
+	<script type="text/javascript">
+		$(".hotspot_content:not(:first)").hide();
+        var news_li=$(".hotspot_tit ul li");
+
+        news_li.hover(function(){
+        	 $(this).addClass("current")
+                  .siblings().removeClass("current");
+            var news_index= news_li.index(this);
+            $(".hotspot_content").eq(news_index).show()
+                            .siblings().hide();
+             $(".hotspot_tit").show();     
+
+			 });
+	</script>
+
+		<script type="text/javascript">
+	Qfast.add('widgets', { path: "{JS_PATH}terminator2.2.min.js", type: "js", requires: ['fx'] });  
+	Qfast(false, 'widgets', function () {
+		K.tabs({
+			id: 'fsD1',   //½¹µãÍ¼°ü¹üid  
+			conId: "D1pic1",  //** ´óÍ¼Óò°ü¹üid  
+			tabId:"D1fBt",  
+			tabTn:"a",
+			conCn: '.fcon', //** ´óÍ¼ÓòÅäÖÃclass       
+			auto: 1,   //×Ô¶¯²¥·Å 1»ò0
+			effect: 'fade',   //Ð§¹ûÅäÖÃ
+			eType: 'click', //** Êó±êÊÂ¼þ
+			pageBt:true,//ÊÇ·ñÓÐ°´Å¥ÇÐ»»Ò³Âë
+			bns: ['.prev', '.next'],//** Ç°ºó°´Å¥ÅäÖÃclass                          
+			interval: 3000  //** Í£¶ÙÊ±¼ä  
+		}) 
+	})  
+</script>
+</body>
+</html>

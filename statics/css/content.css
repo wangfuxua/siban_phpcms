@@ -1,0 +1,101 @@
+
+.content_box{
+	width: 700px;
+	height: auto;
+	padding:0 20px 20px 20px;
+	overflow:hidden;
+}
+
+.main2_left h3{ 
+	display: block;
+	width: 740px;
+	height: 80px;
+	font-size: 18px;
+	font-family: "Microsoft Yahei";
+	line-height: 80px;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	color: #e41220;
+	font-weight: normal;
+}
+
+
+.content_box span{ 
+	display: block;
+	clear: both;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+}
+
+.content_box p{ 
+	line-height: 24px;
+	color: #666;
+}
+
+
+.relative_box{ 
+	clear: both;
+	width: 710px;
+	height: 82px;
+	border-top: 1px solid #ccc;
+	padding: 20px 15px;
+}
+
+
+.relative_box p{ 
+	line-height: 24px;
+	color: #666;
+}
+
+
+.relative_box p a{ 
+	color: #666;
+	padding: 0 10px 0 0;
+}
+
+
+.relative_box p a:hover{ 
+	color: #e41220;
+}
+
+
+.w700{
+	display: block;
+	width: 650px;
+	border: 1px solid #ccc;
+	margin:20px 25px 0 20px;
+}
+
+.tr{
+	width: 650px;
+}
+
+
+.w150{
+	width: 150px;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	vertical-align: middle;
+	text-align: center;
+	color: #444;
+	background-color: #f4f4f4;
+}
+
+
+.w550{
+	width: 550px;
+	border-bottom: 1px solid #ccc;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+.w550 p{
+	line-height: 24px;
+	color: #666;
+}
+
+.bb0{
+	border-bottom: none;
+}
+

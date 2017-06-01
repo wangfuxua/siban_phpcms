@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$CAT[catname]}</title>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}reset.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}common.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}list.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}listType.css">
+	<link href="{CSS_PATH}sucaijiayuan.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}demo.css"/>
+	<script src="{JS_PATH}jquery.min.js"></script>
+	<script src="{JS_PATH}jquery.easydropdown.js"></script>
+	<script src="{JS_PATH}sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="{JS_PATH}koala.min.1.5.js"></script>
+</head>
+<body>
+	<!--头部-->
+	{template 'content','header'}
+	<!--结束-->
+
+	<!--主体-->
+	<div class="ad7">
+			<div id="fsD1" class="focus1">  
+			    <div id="D1pic1" class="fPic">  
+			        {pc:content action="lists" catid="36"}
+					{loop $data $r}
+						
+						<div class="fcon" style="display: none;">
+							<a target="_blank" href="{$r['link']}"><img src="{$r['image']}" style="opacity: 1; "></a>
+						</div>
+						 
+					{/loop}
+				{/pc}	 
+			    </div>
+			    <div class="fbg">  
+			    <div class="D1fBt" id="D1fBt">  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>1</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>2</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class="current"><i>3</i></a>  
+			        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>4</i></a>  
+			    </div>  
+			    </div>  
+			</div>  
+	</div>
+
+	<div class="position_box">
+		当前位置:<a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)}
+	</div>
+
+	<div class="main2">
+		<div class="main4_left">
+		{pc:content action="category" catid="$catid" order="id ASC"}
+				 
+				{loop $data $k $v}
+					<div class="list_box2">
+						<div class="list_tit_box">
+							<span>{$v['catname']}</span>
+							<a href="{$v['url']}">MORE</a>
+						</div>
+						<div class="list_content_box">
+							<ul>
+							{pc:content action="lists" catid="$k" order="id desc" num="10"}
+								{loop $data $r}
+								<li>
+									<a href="{$r['url']}">{$r['title']}</a><span>{date('Y-m-d',$r['inputtime'])}</span>
+								</li>
+								{/loop}
+							{/pc}
+							</ul>
+						</div>
+					</div>
+				{/loop}
+			{/pc}
+		</div>
+
+		<div class="main_right2">
+			<ul>
+				<li class="mt0"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=42"></script></a></li>
+				<li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=43"></script></a></li>
+				<li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=46"></script></li>
+				<!-- <li><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=47"></script></a></li> -->
+			</ul>
+		</div>
+
+	</div>
+	<!--结束-->
+
+
+	<div class="ad7_7">
+		 <script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=45"></script>
+	</div>
+		
+
+	<!--底部-->
+	{template 'content','footer'}
+
+	 
+
+	<script type="text/javascript">
+	Qfast.add('widgets', { path: "{JS_PATH}terminator2.2.min.js", type: "js", requires: ['fx'] });  
+	Qfast(false, 'widgets', function () {
+		K.tabs({
+			id: 'fsD1',   //½¹µãÍ¼°ü¹üid  
+			conId: "D1pic1",  //** ´óÍ¼Óò°ü¹üid  
+			tabId:"D1fBt",  
+			tabTn:"a",
+			conCn: '.fcon', //** ´óÍ¼ÓòÅäÖÃclass       
+			auto: 1,   //×Ô¶¯²¥·Å 1»ò0
+			effect: 'fade',   //Ð§¹ûÅäÖÃ
+			eType: 'click', //** Êó±êÊÂ¼þ
+			pageBt:true,//ÊÇ·ñÓÐ°´Å¥ÇÐ»»Ò³Âë
+			bns: ['.prev', '.next'],//** Ç°ºó°´Å¥ÅäÖÃclass                          
+			interval: 3000  //** Í£¶ÙÊ±¼ä  
+		}) 
+	})  
+</script>
+</body>
+</html>

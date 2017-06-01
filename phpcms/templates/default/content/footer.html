@@ -1,0 +1,58 @@
+﻿<div class="footer_wrap">
+
+	{pc:content action="category" catid="1" siteid="$siteid" order="listorder ASC"}
+	{php $i=0;}
+		<div class="footer_box">
+			<ul>
+				{loop $data $r}
+					{if $i==3}
+					<li><a class="bgn" href="{$r['url']}">{$r['catname']}</a></li>
+					{else}
+					<li><a href="{$r['url']}"><span>{$r['catname']}</span></a></li>
+					{/if}
+					{$i++}
+				{/loop}
+			</ul>
+			<p>京IC备5474735&nbsp;技术支持：普世联创</p>
+			<p>版权所有：四板财经 &nbsp;&nbsp;联系电话：69943608&nbsp;&nbsp; 传真：69943607&nbsp; &nbsp;  邮箱：zuwenjin@126.com &nbsp;  &nbsp; 地址：北京市海淀区中关村西区丹棱街甲1号互联网金融中心16层   </p>
+		</div>
+	{/pc}
+	</div>
+	<!--结束-->
+
+	<div class="float_adl">
+		<a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=38"></script></a>
+		<a href="javascript:void(0);" id="closeButtonleft"><img src="{IMG_PATH}close_buton.png" alt=""></a>
+	</div>
+
+	<div class="float_adr">
+		<a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=39"></script></a>
+		<a href="javascript:void(0);" id="closeButtonright"><img src="{IMG_PATH}close_buton.png" alt=""></a>
+	</div>
+
+	<a href="#0" class="cd-top">Top</a>
+
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		$(".float_adl #closeButtonleft").click(function(){
+			$(".float_adl").hide();
+		});
+
+		$(".float_adr #closeButtonright").click(function(){
+			$(".float_adr").hide();
+		});
+		
+		
+	});
+	</script>
+	
+	
+	<script type="text/javascript" src="{APP_PATH}statics/js/ueditor/ueditor.parse.js"></script>
+	<script type="text/javascript">
+	setTimeout(function(){ uParse('#content', {
+	 'highlightJsUrl':'{APP_PATH}statics/js/ueditor/third-party/SyntaxHighlighter/shCore.js',
+	 'highlightCssUrl':'{APP_PATH}statics/js/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css'})
+	}, 300);
+	</script>

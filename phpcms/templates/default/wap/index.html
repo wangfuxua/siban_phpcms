@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>四板财经</title>
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}reset.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}common.css">
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}index.css">
+	<link href="{CSS_PATH}sucaijiayuan.css" rel="stylesheet" type="text/css"/>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->	
+	<link rel="stylesheet" type="text/css" href="{CSS_PATH}demo.css"/>
+	<script src="{JS_PATH}jquery.min.js"></script>
+	<script src="{JS_PATH}jquery.easydropdown.js"></script>
+	<script src="{JS_PATH}sucaijiayuan.js"></script> 
+	<script type="text/javascript" src="{JS_PATH}koala.min.1.5.js"></script>
+<script type="text/javascript">
+//图片滚动 调用方法 imgscroll({speed: 30,amount: 1,dir: "up"});
+$.fn.imgscroll = function(o){
+	var defaults = {
+		speed: 40,
+		amount: 0,
+		width: 1,
+		dir: "left"
+	};
+	o = $.extend(defaults, o);
+	
+	return this.each(function(){
+		var _li = $("li", this);
+		_li.parent().parent().css({overflow: "hidden", position: "relative"}); //div
+		_li.parent().css({margin: "0", padding: "0", overflow: "hidden", position: "relative", "list-style": "none"}); //ul
+		_li.css({position: "relative", overflow: "hidden"}); //li
+		if(o.dir == "left") _li.css({float: "left"});
+		
+		//初始大小
+		var _li_size = 0;
+		for(var i=0; i<_li.size(); i++)
+			_li_size += o.dir == "left" ? _li.eq(i).outerWidth(true) : _li.eq(i).outerHeight(true);
+		
+		//循环所需要的元素
+		if(o.dir == "left") _li.parent().css({width: (_li_size*3)+"px"});
+		_li.parent().empty().append(_li.clone()).append(_li.clone()).append(_li.clone());
+		_li = $("li", this);
+
+		//滚动
+		var _li_scroll = 0;
+		function goto(){
+			_li_scroll += o.width;
+			if(_li_scroll > _li_size)
+			{
+				_li_scroll = 0;
+				_li.parent().css(o.dir == "left" ? { left : -_li_scroll } : { top : -_li_scroll });
+				_li_scroll += o.width;
+			}
+				_li.parent().animate(o.dir == "left" ? { left : -_li_scroll } : { top : -_li_scroll }, o.amount);
+		}
+		
+		//开始
+		var move = setInterval(function(){ goto(); }, o.speed);
+		_li.parent().hover(function(){
+			clearInterval(move);
+		},function(){
+			clearInterval(move);
+			move = setInterval(function(){ goto(); }, o.speed);
+		});
+	});
+};
+</script>
+</head>
+<body>
+	<!--头部-->
+		<div class="dateBox">
+			<span class="date">2015年3月10日&nbsp;星期二&nbsp;农历&nbsp;正月廿</span>
+			<span class="collection"><a href="#">加入收藏</a>|<a href="#">设为首页</a></span>
+		</div>
+
+		<div class="headerWrap">
+
+			<div class="header_box">
+
+				<div class="logo">
+					<a href="/"><img src="{IMG_PATH}logo.png" alt=""></a>
+				</div>
+
+				<div class="search">
+					<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
+						<option value="1">公司</option>
+						<option value="2">新闻</option>
+						<option value="3">Opti</option>
+						<option value="4">Opti</option>
+						<option value="5">Opti</option>
+					</select>
+					<input type="text" id="search_input" value=""/>
+					<a href="javascript:void(0);"><img src="{IMG_PATH}sezrch_button.png"></a>
+				</div>
+
+				<div class="share">
+					<a href="#"><img src="{IMG_PATH}weixin.png"></a>
+					<a href="#"><img src="{IMG_PATH}weibo.png"></a>
+				</div>
+
+			</div>
+
+		</div>
+	<!--结束-->
+		
+	<!--交易所列表-->
+		<div class="excharge_list">
+			<ul>
+				{pc:content action="lists" catid="21" order="id" num="" }
+				{php $i=0;}
+					{loop $data $r}
+						<li {if $i%5==0}class="ml0"{/if}><a href="{$r['url']}">{$r['catname']}</a></li>
+						{$i++}
+					{/loop}
+				{/pc}
+				
+			</ul>
+		</div>
+	<!--结束-->
+
+	<!--信息/广告-->
+		<div class="hot_box">
+
+			<div class="hotspot">
+
+				<div class="hotspot_tit">
+					<ul>
+						<li class="current h74">热<br/>点</li>
+						<li>股<br/>市</li>
+					</ul>
+				</div>
+
+				<div class="hotspot_content">
+					海西股权投资中心海股权托管交易中鲁股权托管交易中西股权投资中心海西股权投资中心海股权投资中心上海权托管交易中<a href="content.html">更多</a>
+				</div>
+
+				<div class="hotspot_content">
+					辽宁股权投资中心辽宁股权托管交易中鲁股权托管交易中西股权投资中心海西股权投资中心海股权投资上海权托管交易中<a href="content.html">更多</a>
+				</div>
+
+			</div>
+
+			<div class="ad_box">
+				<ul>
+					<li class="w611"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=28"></script></a></li>
+					<li class="w199"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=29"></script></a></li>
+					<li class="mt8 ml0"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=30"></script></a></li>
+					<li class="mt8"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=31"></script></a></li>
+					<li class="mt8"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=40"></script></a></li>
+					<li class="ml6 w199"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=33"></script></a></li>
+				</ul>
+			</div>	
+
+		</div>
+	<!--结束-->
+
+	<!--政策解析-->
+		<div class="main">
+
+			<div class="main_left">
+			{pc:content action="category" catid="0" order="id ASC Limit 4,12" num="12"}
+					{php $i=1;}
+				{loop $data $k $v}
+					<div class="policy_box">
+						<div class="poicy_tit_box">
+							<span>{$v['catname']} </span><a href="{$v['url']}">MORE</a>
+						</div>
+
+						<div class="poicy_content_box">
+							<ul>
+							{pc:content action="lists" catid="$k" order="id" num="8"}
+								{loop $data $r}
+									<li><a href="{$r['url']}">{$r['area']}:{str_cut($r['title'],58,'...')}</a></li>
+								{/loop}
+							{/pc}
+							</ul>
+						</div>
+					</div>
+					{if $i%2==0}
+					<div class="ad4"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=8"></script></a></div>
+
+					<div class="ad4"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=7"></script></a></div>
+					{/if}
+					{$i++}
+				{/loop}
+			{/pc}
+
+				
+
+			</div>
+
+			<div class="main_right">
+			
+				<div class="four_box">
+
+					<div class="four_tit_box">
+						<span>{$CATEGORYS[24][catname]}</span>
+					</div>
+
+					<div class="four_content_box">
+						<ul>
+							{pc:content action="lists" catid="24" order="id" num="8" }
+							{loop $data $r}
+								<li><a href="{$r['url']}">{$r['catname']}</a></li>
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>{$CATEGORYS[25][catname]}</span>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+							{pc:content action="lists" catid="25" order="id" num="8"  }
+							{loop $data $r}
+								<li class="w62"><a href="{$r['url']}">{$r['catname']}</a></li>
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>{$CATEGORYS[26][catname]}</span>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+							{pc:content action="lists" catid="26" order="id" num="16"  }
+							{loop $data $r}
+								<li class="w62"><a href="{$r['url']}">{$r['catname']}</a></li>
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="recommed_box">
+
+					<div class="recommed_tit_box">
+						<span>{$CATEGORYS[27][catname]}</span>
+					</div>
+
+					<div class="recommed_content_box">
+						<ul>
+							{pc:content action="lists" catid="27" order="id" num="16"  }
+							{loop $data $r}
+								<li class="w62"><a href="{$r['url']}">{$r['catname']}</a></li>
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="ad5"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=34"></script></a></div>
+				<div class="ad5"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=35"></script></a></div>
+				<div class="ad5"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=36"></script></a></div>
+
+			</div>
+
+		</div>
+
+	<!--结束-->
+
+	<!--广告-->
+		<div class="ad6"><a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=37"></script></a></div>
+	<!--结束-->
+	<!--合作专区-->
+		<div class="partner_box">
+
+			<div class="partner_tit">
+				合<br/>作<br/>专<br/>区
+			</div>
+
+			<div class="scrollleft">
+					<ul>
+						<li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>海西股权投资中心</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>辽宁股权投资中心</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>上海股权投资中心</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>北京股权投资中心</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>海西股权投资中心</p>
+							</a>
+						</li><li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>海西股权投资中心</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span><img src="{IMG_PATH}partner_pic.png"></span>
+								<p>重庆股权投资中心</p>
+							</a>
+						</li>
+					</ul>
+				
+			</div>
+
+		</div>
+	<!--结束-->
+
+
+	<!--底部-->
+		<div class="footer_wrap">
+
+			<div class="footer_box">
+				<ul>
+					<li><a href="#">关于我们</a></li>
+					<li><a href="#">广告服务</a></li>
+					<li><a href="#">联系我们</a></li>
+					<li><a class="bgn" href="#">免责声明</a></li>
+				</ul>
+				<p>京IC备5474735   技术支持：普世联创</p>
+				<p>版权所有：四板财经 &nbsp;&nbsp;联系电话：159324244&nbsp;&nbsp;    QQ：34242344&nbsp; &nbsp;   邮箱：34242344@qq.com &nbsp;  &nbsp; 地址：北京海淀区中关村3424   </p>
+			</div>
+
+		</div>
+	<!--结束-->
+
+	<div class="float_adl">
+		<a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=38"></script></a>
+	</div>
+
+	<div class="float_adr">
+		<a href="#"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=39"></script></a>
+	</div>
+
+	<a href="#0" class="cd-top">Top</a>
+
+	<script type="text/javascript">
+		$(".hotspot_content:not(:first)").hide();
+        var news_li=$(".hotspot_tit ul li");
+
+        news_li.hover(function(){
+        	 $(this).addClass("current")
+                  .siblings().removeClass("current");
+            var news_index= news_li.index(this);
+            $(".hotspot_content").eq(news_index).show()
+                            .siblings().hide();
+             $(".hotspot_tit").show();     
+
+		});
+	</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(".scrollleft").imgscroll({
+		speed: 40,    //图片滚动速度
+		amount: 0,    //图片滚动过渡时间
+		width: 1,     //图片滚动步数
+		dir: "left"   // "left" 或 "up" 向左或向上滚动
+	});
+	
+	
+});
+</script> 
+
+
+
+</body>
+</html>
